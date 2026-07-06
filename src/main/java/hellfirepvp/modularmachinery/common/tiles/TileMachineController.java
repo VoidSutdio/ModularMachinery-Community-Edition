@@ -163,7 +163,9 @@ public class TileMachineController extends TileMultiblockMachineController {
         }
 
         if (thread.getContext() == null) {
-            thread.setContext(thread.createContext(activeRecipe));
+            RecipeCraftingContext context = thread.createContext(activeRecipe);
+            context.setParallelism(activeRecipe.getParallelism());
+            thread.setContext(context);
         }
 
         // PreTickEvent
